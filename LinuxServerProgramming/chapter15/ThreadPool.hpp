@@ -29,7 +29,7 @@ class ThreadPool
 };
 
 template <typename T>
-static void* worker(void* arg)
+void* ThreadPool<T>::worker(void* arg)
 {
 				ThreadPool<T> *pool=(ThreadPool<T>*)arg;
 				pool->run();
@@ -50,7 +50,7 @@ void ThreadPool<T>::run()
 								}
 								T* req=mWorkQueues.front();
 								mWorkQueues.pop_front();
-								mWorkQueues.unlock();
+								mQueueLocker.unlock();
 								if(!req)
 												continue;
 								req->process();

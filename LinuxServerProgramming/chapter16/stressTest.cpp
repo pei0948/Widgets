@@ -9,6 +9,7 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <string.h>
+#include <errno.h>
 
 //请求内容
 static const char* req="GET http://localhost/index.html HTTP/1.1\r\nConnection: keep-alive\r\n\r\nxxxxxxxxxxxxxxxxxxxx";
@@ -88,6 +89,10 @@ void startConn(int epollFd, int num, const char *ip, int port)
 								{
 												printf("build the connection\n");
 												addFd(epollFd, sockFd);
+								}
+								else
+								{
+												printf("error is %d\n", errno);
 								}
 				}
 }
