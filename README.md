@@ -1,2 +1,2 @@
 # Widgets
-some widgets of C++
+some widgets to practice
